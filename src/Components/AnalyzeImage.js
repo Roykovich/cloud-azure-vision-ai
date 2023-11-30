@@ -1,10 +1,6 @@
-// Create a React component calle AnaluzeImage.js
-
 import React from 'react';
 
-// Create a function called AnalyzeImage
 const AnalyzeImage = ({ url, description, json}) => {
-    console.log('yo ocurro?')
     return (
         <div>
             <h1>Computer Vision Analysis</h1>

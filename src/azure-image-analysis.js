@@ -26,6 +26,6 @@ const analyzeImage = async (url) => {
         });
 }
 
-// analyzeImage("https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Broadway_and_Times_Square_by_night.jpg/450px-Broadway_and_Times_Square_by_night.jpg")
+analyzeImage("https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Broadway_and_Times_Square_by_night.jpg/450px-Broadway_and_Times_Square_by_night.jpg")
 
 module.exports = analyzeImage;
