@@ -1,7 +1,18 @@
+
+const isConfigured = () => {
+    if (!process.env.REACT_APP_AZURE_COMPUTER_VISION_SUBSCRIPTION_KEY || !process.env.REACT_APP_AZURE_COMPUTER_VISION_ENDPOINT) {
+        console.log("Make sure to set your AZURE_COMPUTER_VISION_SUBSCRIPTION_KEY and AZURE_COMPUTER_VISION_ENDPOINT environment variables.");
+        return false;
+    } else {
+        return true;
+    }
+}
+
+const SUBSCRIPTION_KEY = process.env.REACT_APP_AZURE_COMPUTER_VISION_SUBSCRIPTION_KEY;
+const ENDPOINT = process.env.REACT_APP_AZURE_COMPUTER_VISION_ENDPOINT;
+
 const analyzeImage = async (url) => {
-    const subscriptionKey = process.env.REACT_APP_AZURE_COMPUTER_VISION_SUBSCRIPTION_KEY;
-    const endpoint = process.env.REACT_APP_AZURE_COMPUTER_VISION_ENDPOINT;
-    const uriBase = endpoint + "vision/v3.0/analyze";
+    const uriBase = ENDPOINT + "vision/v3.0/analyze";
     const params = {
         "visualFeatures": "Categories,Description,Color",
         "details": "",
@@ -11,7 +22,7 @@ const analyzeImage = async (url) => {
         method: "POST",
         headers: {
         "Content-Type": "application/json",
-        "Ocp-Apim-Subscription-Key": subscriptionKey
+        "Ocp-Apim-Subscription-Key": SUBSCRIPTION_KEY
         },
         body: JSON.stringify({url})
     };
@@ -28,4 +39,4 @@ const analyzeImage = async (url) => {
 
 analyzeImage("https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Broadway_and_Times_Square_by_night.jpg/450px-Broadway_and_Times_Square_by_night.jpg")
 
-module.exports = analyzeImage;
+module.exports = {analyzeImage, isConfigured};
